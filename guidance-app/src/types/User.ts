@@ -3,4 +3,5 @@ export interface User {
   id: string;
   phone?: string;
   website?: string;
+  email?: string;
 }
