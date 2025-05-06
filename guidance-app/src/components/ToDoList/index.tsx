@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 
 import { Todo } from "@/types/Todo";
 import { TodoService } from "@/utils/api/ToDoService";
+import Button from "../UI/Button";
+import PageHeadline from "../UI/PageHeadline";
 
 interface Props {
   toDoService: TodoService;
@@ -18,7 +20,7 @@ const ToDoList = ({ toDoService }: Props) => {
     toDoService
       .getTodos()
       .then((data) => {
-        setToDos(data);
+        setToDos(data.slice(0, 15));
       })
       .catch((error) => {
         console.error("Error fetching todos:", error);
@@ -32,7 +34,11 @@ const ToDoList = ({ toDoService }: Props) => {
   const handleAddTodo = async () => {
     if (!newTodo.trim()) return;
 
-    await toDoService.addTodo({ title: newTodo });
+    const res = await toDoService.addTodo({ title: newTodo });
+    setToDos((prevTodos) => [
+      { id: Date.now(), title: newTodo, completed: false },
+      ...prevTodos,
+    ]);
   };
 
   const handleDeleteTodo = async (id: number) => {
@@ -41,22 +47,31 @@ const ToDoList = ({ toDoService }: Props) => {
   };
 
   return (
-    <div>
-      <h2>Todo List</h2>
-      <input
-        type="text"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
-        placeholder="Add a new todo"
-      />
+    <div className="flex gap-4 flex-col">
+      <PageHeadline>Todo List</PageHeadline>
+      <div className="flex justify-between gap-2">
+        <input
+          type="text"
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          placeholder="Add a new todo"
+          className="w-1/2 rounded px-2 py-1 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-      <button onClick={handleAddTodo}>Add Todo</button>
+        <Button onClick={handleAddTodo}>Add Todo</Button>
+      </div>
 
-      <ul>
+      <ul className="bg-white rounded mt-4 shadow-md">
         {toDos.map((todo) => (
-          <li key={todo.id}>
-            {todo.title}{" "}
-            <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
+          <li key={todo.id} className="flex items-center px-4 py-2 border-b">
+            <p>{todo.title}</p>
+            <Button
+              className="ml-auto"
+              variant="remove"
+              onClick={() => handleDeleteTodo(todo.id)}
+            >
+              X
+            </Button>
           </li>
         ))}
       </ul>

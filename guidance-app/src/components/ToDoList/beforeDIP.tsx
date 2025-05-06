@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { Todo } from "@/types/Todo";
+import Button from "../UI/Button";
 
 //Dependency Inversion Principle (DIP)
 const TodoListBeforeDIP = () => {
@@ -53,7 +54,8 @@ const TodoListBeforeDIP = () => {
         {todos.map((todo) => (
           <li key={todo.id}>
             {todo.title}{" "}
-            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+            <Button onClick={() => deleteTodo(todo.id)}>Delete</Button>
+            {/* <button onClick={() => deleteTodo(todo.id)}>Delete</button> */}
           </li>
         ))}
       </ul>

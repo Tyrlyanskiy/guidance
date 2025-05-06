@@ -5,11 +5,11 @@ interface CardProps {
 
 //LSP - Liskov Substitution Principle
 
-const Card: React.FC<CardProps> = ({ renderBody, renderHeader }) => (
-  <div className="Card">
-    <h3>{renderHeader()}</h3>
-    <h3>{renderBody()}</h3>
+const CommonCard: React.FC<CardProps> = ({ renderBody, renderHeader }) => (
+  <div className=" bg-white/90 rounded mt-4 shadow-md">
+    <h3 className="text-xl">{renderHeader()}</h3>
+    <div>{renderBody()}</div>
   </div>
 );
 
-export default Card;
+export default CommonCard;

@@ -1,5 +1,7 @@
 "use client";
 
+import Button from "@/components/UI/Button";
+
 const AdminActions = () => {
   const handleEditClick = () => {
     console.log("Editing user");
@@ -11,12 +13,14 @@ const AdminActions = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <h3>Admin Actions</h3>
+      <h3 className="text-2xl">Admin Actions</h3>
       <p>As an admin, you can edit or delete users.</p>
       <p>Click the buttons below to perform actions:</p>
 
-      <button onClick={handleEditClick}>Edit User</button>
-      <button onClick={handleDeleteClick}>Delete User</button>
+      <div className="flex gap-4">
+        <Button onClick={handleEditClick}>Edit User</Button>
+        <Button onClick={handleDeleteClick}>Delete User</Button>
+      </div>
     </div>
   );
 };

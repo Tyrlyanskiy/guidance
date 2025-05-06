@@ -6,7 +6,6 @@ const UsersWithFilter = async () => {
   const userData: User[] = await getJsonObject(
     "https://jsonplaceholder.typicode.com/users"
   );
-  console.log("-----", userData);
   return (
     <div>
       <h2>Users</h2>

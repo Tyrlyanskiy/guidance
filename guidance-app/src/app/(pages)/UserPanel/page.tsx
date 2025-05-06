@@ -1,4 +1,5 @@
 import { getJsonObject } from "@/app/utils/getJsonObject";
+import PageHeadline from "@/components/UI/PageHeadline";
 import UserPanel from "@/components/UserPanel";
 import { User } from "@/types/User";
 
@@ -8,7 +9,12 @@ const UserPanelPage = async () => {
     "https://jsonplaceholder.typicode.com/users"
   );
 
-  return <UserPanel user={userData[0]} role="admin" />;
+  return (
+    <>
+      <PageHeadline>User Panel</PageHeadline>
+      <UserPanel user={userData[0]} role="admin" />
+    </>
+  );
 };
 
 export default UserPanelPage;

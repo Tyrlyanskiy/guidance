@@ -2,7 +2,7 @@ import { getJsonObject } from "@/utils/getJsonObject";
 import PostCard from "@/components/Card/PostCard";
 import { User } from "@/types/User";
 import { Post } from "@/types/Post";
-import Card from "@/components/Card/CommonCard";
+import CommonCard from "@/components/Card/CommonCard";
 
 // LSP
 const UsersAndPostsCards = async () => {
@@ -18,7 +18,7 @@ const UsersAndPostsCards = async () => {
       <PostCard post={postData[0]} />
 
       {userData.map((user) => (
-        <Card
+        <CommonCard
           key={user.id}
           renderHeader={() => user.name}
           renderBody={() => user.website}

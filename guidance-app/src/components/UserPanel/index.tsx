@@ -2,6 +2,7 @@ import { User } from "@/types/User";
 import AdminActions from "./actions/AdminActions";
 import SubscriberActions from "./actions/SubscriberActions";
 import GuestActions from "./actions/GuestActions";
+import CommonCard from "../Card/CommonCard";
 
 interface Prorps {
   user: User;
@@ -12,8 +13,10 @@ interface Prorps {
 const UserPanel = ({ user, role }: { user: User; role: string }) => {
   return (
     <div className="flex flex-col gap-2">
-      <h2>{user.name}</h2>
-      <p>{user.email}</p>
+      <CommonCard
+        renderHeader={() => user.name}
+        renderBody={() => user.email}
+      />
 
       {role === "admin" && <AdminActions />}
       {role === "subscriber" && <SubscriberActions />}

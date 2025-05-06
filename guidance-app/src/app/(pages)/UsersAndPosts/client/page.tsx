@@ -39,7 +39,6 @@ const UsersAndPosts = () => {
     loadUsers();
   }, []);
 
-  console.log("---rendering-----");
   return (
     <div>
       <h2>Users</h2>
